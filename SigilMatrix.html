@@ -4,60 +4,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sigil Matrix</title>
+    <style>
+        span {
+            display: inline-block;
+            margin: 4px 6px;
+            padding: 4px 8px;
+            font-size: 1.2em;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            background: #f5f5fa;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        span[title]:hover,
+        span[title]:focus {
+            background: #6366f1;
+            color: #fff;
+            border-color: #6366f1;
+        }
+
+        body {
+            background: #f0f1f6;
+            color: #22223b;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 32px;
+        }
+
+        @media (max-width: 600px) {
+            span {
+                font-size: 1em;
+                padding: 3px 6px;
+                margin: 3px 4px;
+            }
+        }
+
+        .token-info {
+            margin-top: 40px;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+
+        .token-info h2 {
+            margin-top: 0;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #6366f1;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            color: #4a4e69;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to the Sigil Matrix</h1>
     <p>Explore the fascinating world of sigils and their meanings.</p>
-    <style>
-        span {
-  display: inline-block;
-  margin: 4px 6px;
-  padding: 4px 8px;
-  font-size: 1.2em;
-  font-family: 'Fira Mono', 'Consolas', monospace;
-  background: #f5f5fa;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  transition: background 0.2s, color 0.2s;
-  cursor: pointer;
-}
 
-span[title]:hover,
-span[title]:focus {
-  background: #6366f1;
-  color: #fff;
-  border-color: #6366f1;
-}
+    <nav>
+        <ul>
+            <li><a href="#token-info">Token Information</a></li>
+            <li><a href="#sigil-definitions">Sigil Definitions</a></li>
+        </ul>
+    </nav>
 
-body {
-  background: #f0f1f6;
-  color: #22223b;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  padding: 32px;
-}
+    <div id="sigil-matrix">
+        <div>
+            <span title="Exclamation" tabindex="0">!</span>
+            <span title="At" tabindex="0">@</span>
+            <span title="Hash" tabindex="0">#</span>
+            <span title="Dollar" tabindex="0">$</span>
+            <span title="Percent" tabindex="0">%</span>
+            <span title="Caret" tabindex="0">^</span>
+            <span title="Ampersand" tabindex="0">&</span>
+            <span title="Asterisk" tabindex="0">*</span>
+            <span title="Left Paren" tabindex="0">(</span>
+            <span title="Right Paren" tabindex="0">)</span>
+        </div>
+        <div>
+            <span title="Exclamation" tabindex="0">!!</span>
+            <span title="Exclamation At" tabindex="0">!@</span>
+            <span title="Exclamation Hash" tabindex="0">!#</span>
+            <span title="Exclamation Dollar" tabindex="0">!$</span>
+            <span title="Exclamation Percent" tabindex="0">!%</span>
+            <span title="Exclamation Caret" tabindex="0">!^</span>
+            <span title="Exclamation Ampersand" tabindex="0">!&</span>
+            <span title="Exclamation Asterisk" tabindex="0">!*</span>
+            <span title="Exclamation Left Paren" tabindex="0">!(</span>
+            <span title="At Right Paren" tabindex="0">@)</span>
+        </div>
+        <div>
+            <span title="At Exclamation" tabindex="0">@!</span>
+            <span title="At At" tabindex="0">@@</span>
+            <span title="At Hash" tabindex="0">@#</span>
+            <span title="At Dollar" tabindex="0">@$</span>
+            <span title="At Percent" tabindex="0">@%</span>
+            <span title="At Caret" tabindex="0">@^</span>
+            <span title="At Ampersand" tabindex="0">@&</span>
+            <span title="At Asterisk" tabindex="0">@*</span>
+            <span title="At Left Paren" tabindex="0">@ (</span>
+            <span title="Hash Right Paren" tabindex="0">#)</span>
+        </div>
+        <div>
+            <span title="Hash Exclamation" tabindex="0">#!</span>
+            <span title="Hash At" tabindex="0">#@</span>
+            <span title="Hash Hash" tabindex="0">##</span>
+            <span title="Hash Dollar" tabindex="0">#$</span>
+            <span title="Hash Percent" tabindex="0">#%</span>
+            <span title="Hash Caret" tabindex="0">#^</span>
+            <span title="Hash Ampersand" tabindex="0">#&</span>
+            <span title="Hash Asterisk" tabindex="0">#*</span>
+            <span title="Hash Left Paren" tabindex="0">#(</span>
+            <span title="Dollar Right Paren" tabindex="0">$)</span>
+        </div>
+        <div>
+            <span title="Dollar Exclamation" tabindex="0">$!</span>
+            <span title="Dollar At" tabindex="0">$@</span>
+            <span title="Dollar Hash" tabindex="0">#$</span>
+            <span title="Dollar Dollar" tabindex="0">$$</span>
+            <span title="Dollar Percent" tabindex="0">$%</span>
+            <span title="Dollar Caret" tabindex="0">$^</span>
+            <span title="Dollar Ampersand" tabindex="0">$&</span>
+            <span title="Dollar Asterisk" tabindex="0">$*</span>
+            <span title="Dollar Left Paren" tabindex="0">$(</span>
+            <span title="Percent Right Paren" tabindex="0">%)</span>
+        </div>
+        <div>
+            <span title="Percent Exclamation" tabindex="0">%!</span>
+            <span title="Percent At" tabindex="0">%@</span>
+            <span title="Percent Hash" tabindex="0">%#</span>
+            <span title="Percent Dollar" tabindex="0">%$</span>
+            <span title="Percent Percent" tabindex="0">%%</span>
+            <span title="Percent Caret" tabindex="0">%^</span>
+            <span title="Percent Ampersand" tabindex="0">%&</span>
+            <span title="Percent Asterisk" tabindex="0">%*</span>
+            <span title="Percent Left Paren" tabindex="0">%(</span>
+            <span title="Caret Right Paren" tabindex="0">^)</span>
+        </div>
+        <div>
+            <span title="Caret Exclamation" tabindex="0">^!</span>
+            <span title="Caret At" tabindex="0">^@</span>
+            <span title="Caret Hash" tabindex="0">^#</span>
+            <span title="Caret Dollar" tabindex="0">^$</span>
+            <span title="Caret Percent" tabindex="0">^%</span>
+            <span title="Caret Caret" tabindex="0">^^</span>
+            <span title="Caret Ampersand" tabindex="0">^&</span>
+            <span title="Caret Asterisk" tabindex="0">^*</span>
+            <span title="Caret Left Paren" tabindex="0">^(</span>
+            <span title="Ampersand Right Paren" tabindex="0">&)</span>
+        </div>
+        <div>
+            <span title="Ampersand Exclamation" tabindex="0">&!</span>
+            <span title="Ampersand At" tabindex="0">&@</span>
+            <span title="Ampersand Hash" tabindex="0">&#</span>
+            <span title="Ampersand Dollar" tabindex="0">&$</span>
+            <span title="Ampersand Percent" tabindex="0">&%</span>
+            <span title="Ampersand Caret" tabindex="0">&^</span>
+            <span title="Ampersand Ampersand" tabindex="0">&&</span>
+            <span title="Ampersand Asterisk" tabindex="0">&*</span>
+            <span title="Ampersand Left Paren" tabindex="0">& (</span>
+            <span title="Asterisk Right Paren" tabindex="0">*)</span>
+        </div>
+        <div>
+            <span title="Asterisk Exclamation" tabindex="0">*! </span>
+            <span title="Asterisk At" tabindex="0">*@</span>
+            <span title="Asterisk Hash" tabindex="0">*#</span>
+            <span title="Asterisk Dollar" tabindex="0">*$</span>
+            <span title="Asterisk Percent" tabindex="0">*%</span>
+            <span title="Asterisk Caret" tabindex="0">*^</span>
+            <span title="Asterisk Ampersand" tabindex="0">*&</span>
+            <span title="Asterisk Asterisk" tabindex="0">**</span>
+            <span title="Asterisk Left Paren" tabindex="0">*(</span>
+            <span title="Left Paren Left Paren" tabindex="0">(()</span>
+        </div>
+        <div>
+            <span title="Left Paren Exclamation" tabindex="0">(!</span>
+            <span title="Left Paren At" tabindex="0">(@</span>
+            <span title="Left Paren Hash" tabindex="0">(#</span>
+            <span title="Left Paren Dollar" tabindex="0">($</span>
+            <span title="Left Paren Percent" tabindex="0">(%</span>
+            <span title="Left Paren Caret" tabindex="0">(^</span>
+            <span title="Left Paren Ampersand" tabindex="0">(&</span>
+            <span title="Left Paren Asterisk" tabindex="0">(*</span>
+            <span title="Left Paren Left Paren" tabindex="0">((</span>
+            <span title="Exclamation Right Paren" tabindex="0">!))</span>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('#sigil-matrix span').forEach(function(span) {
+            span.addEventListener('click', function() {
+                alert('You clicked: ' + span.textContent.trim());
+            });
+            span.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    span.click();
+                }
+            });
+        });
+    });
+    </script>
 
-@media (max-width: 600px) {
-  span {
-    font-size: 1em;
-    padding: 3px 6px;
-    margin: 3px 4px;
-  }
-}
-    </style>
-
-
-'<span title="Exclamation">!</span> <span title="At">@</span> <span title="Hash">#</span> <span title="Dollar">$</span> <span title="Percent">%</span> <span title="Caret">^</span> <span title="Ampersand">&</span> <span title="Asterisk">*</span> <span title="Left Paren">(</span> <span title="Right Paren">!)</span>',
-'<span title="Exclamation">!!</span> <span title="Exclamation At">!@</span> <span title="Exclamation Hash">!#</span> <span title="Exclamation Dollar">!$</span> <span title="Exclamation Percent">!%</span> <span title="Exclamation Caret">!^</span> <span title="Exclamation Ampersand">!&</span> <span title="Exclamation Asterisk">!*</span> <span title="Exclamation Left Paren">!(</span> <span title="At Right Paren">@)</span>',
-'<span title="At Exclamation">@!</span> <span title="At At">@@</span> <span title="At Hash">@#</span> <span title="At Dollar">@$</span> <span title="At Percent">@%</span> <span title="At Caret">@^</span> <span title="At Ampersand">@&</span> <span title="At Asterisk">@*</span> <span title="At Left Paren">@ (</span> <span title="Hash Right Paren">#)</span>',
-'<span title="Hash Exclamation">#!</span> <span title="Hash At">#@</span> <span title="Hash Hash">##</span> <span title="Hash Dollar">#$</span> <span title="Hash Percent">#%</span> <span title="Hash Caret">#^</span> <span title="Hash Ampersand">#&</span> <span title="Hash Asterisk">#*</span> <span title="Hash Left Paren">#(</span> <span title="Dollar Right Paren">$)</span>',
-'<span title="Dollar Exclamation">$!</span> <span title="Dollar At">$@</span> <span title="Dollar Hash">#$</span> <span title="Dollar Dollar">$$</span> <span title="Dollar Percent">$%</span> <span title="Dollar Caret">$^</span> <span title="Dollar Ampersand">$&</span> <span title="Dollar Asterisk">$*</span> <span title="Dollar Left Paren">$(</span> <span title="Percent Right Paren">%)</span>',
-'<span title="Percent Exclamation">%!</span> <span title="Percent At">%@</span> <span title="Percent Hash">%#</span> <span title="Percent Dollar">%$</span> <span title="Percent Percent">%%</span> <span title="Percent Caret">%^</span> <span title="Percent Ampersand">%&</span> <span title="Percent Asterisk">%*</span> <span title="Percent Left Paren">%(</span> <span title="Caret Right Paren">^)</span>',
-'<span title="Caret Exclamation">^!</span> <span title="Caret At">^@</span> <span title="Caret Hash">^#</span> <span title="Caret Dollar">^$</span> <span title="Caret Percent">^%</span> <span title="Caret Caret">^^</span> <span title="Caret Ampersand">^&</span> <span title="Caret Asterisk">^*</span> <span title="Caret Left Paren">^(</span> <span title="Ampersand Right Paren">&)</span>',
-'<span title="Ampersand Exclamation">&!</span> <span title="Ampersand At">&@</span> <span title="Ampersand Hash">&#</span> <span title="Ampersand Dollar">&$</span> <span title="Ampersand Percent">&%</span> <span title="Ampersand Caret">&^</span> <span title="Ampersand Ampersand">&&</span> <span title="Ampersand Asterisk">&*</span> <span title="Ampersand Left Paren">& (</span> <span title="Asterisk Right Paren">*)</span>',
-'<span title="Asterisk Exclamation">*! </span><span title="Asterisk At">*@</span> <span title="Asterisk Hash">*#</span> <span title="Asterisk Dollar">*$</span> <span title="Asterisk Percent">*%</span> <span title="Asterisk Caret">*^</span> <span title="Asterisk Ampersand">*&</span> <span title="Asterisk Asterisk">**</span> <span title="Asterisk Left Paren">*(</span> <span title="Left Paren Left Paren">(()</span>',
-'<span title="Left Paren Exclamation">(!</span> <span title="Left Paren At">(@</span> <span title="Left Paren Hash">(#</span> <span title="Left Paren Dollar">($</span> <span title="Left Paren Percent">(%</span> <span title="Left Paren Caret">(^</span> <span title="Left Paren Ampersand">(&</span> <span title="Left Paren Asterisk">(*</span> <span title="Left Paren Left Paren">((</span> <span title="Exclamation Right Paren">!))</span>',
-
-
-
+    <div class="token-info">
+        <h2>Sigil Matrix definitions</h2>
+        <section>
+            <ul>
+                <li><strong>Exclamation (<code>!</code>)</strong>: Represents logical negation.</li>
+                <li><strong>At (<code>@</code>)</strong>: Used to denote arrays.</li>
+                <li><strong>Hash (<code>#</code>)</strong>: Indicates comments in Perl code.</li>
+                <li><strong>Dollar (<code>$</code>)</strong>: Represents scalar variables.</li>
+                <li><strong>Percent (<code>%</code>)</strong>: Used for hashes.</li>
+                <li><strong>Caret (<code>^</code>)</strong>: Represents the bitwise XOR operator.</li>
+                <li><strong>Ampersand (<code>&amp;</code>)</strong>: Used for subroutine calls.</li>
+                <li><strong>Asterisk (<code>*</code>)</strong>: Represents dereferencing.</li>
+                <li><strong>Left Parenthesis (<code>(</code>)</strong>: Used for grouping expressions.</li>
+                <li><strong>Right Parenthesis (<code>)</code>)</strong>: Closes a grouping expression.</li>
+            </ul>
 </body>
 </html>

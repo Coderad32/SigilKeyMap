@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Token Sigils — Key Mapper -- 100 grid</title>
+  <style>
+    :root {
+      --bg: #d0a60f;
+      --panel: #151a21;
+      --text: #e6edf3;
+      --muted: #9aa4ad;
+      --accent: #4cc2ff;
+      --button-bg: #e2e7ee;
+      --button-hover: #2dd10d;
+      --button-active: #0c448e;
+      --border: #c3c5c7;
+      --radius: 10px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      margin: 0;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      letter-spacing: 0.2px;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 10px;
+    }
+
+    .cell {
+      background: var(--button-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 10px;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: background 160ms ease, border-color 160ms ease, transform 80ms ease;
+      user-select: none;
+    }
+
+    .cell:hover {
+      background: var(--button-hover);
+      border-color: #07dc1d;
+    }
+
+    .cell:active {
+      background: var(--button-active);
+      transform: translateY(1px);
+    }
+
+    .sigil {
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .index {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .footer {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .accent {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+.cell.highlight {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0cb130;
+  font-weight: 600;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Token Sigils — Key Mapper</h1>
+      <p>100-button grid mapped to your sigil sequence for quick visual reference and interaction.</p>
+    </header>
+
+    <section class="panel">
+  <input
+  id="sigilSearch"
+  type="text"
+  placeholder="Search sigils or index…"
+  style="
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-size: 1rem;
+  "
+/>
+
+
+      <div class="grid" id="grid"></div>
+      <div class="footer">
+        Source Code: <span class="accent">Cody Bunnell</span> —
+        <a href="https://github.com/Coderad32" target="_blank" rel="noopener noreferrer">github.com/Coderad32</a> ·
+        <a href="https://x.com/coderad32" target="_blank" rel="noopener noreferrer">x.com/coderad32</a>
+      </div>
+    </section>
+  </div>
+
+
+<script>
+  const labels = [
+    "!", "@", "#", "$", "%", "^", "&", "*", "(",
+    "!)", "!!", "!@", "!#", "!$", "!%", "!^", "!&", "!*", "!(",
+    "@)", "@!", "@@", "@#", "@$", "@%", "@^", "@&", "@*", "@(",
+    "#)", "#!", "#@", "##", "#$", "#%", "#^", "#&", "#*", "#(",
+    "$)", "$!", "$@", "$#", "$$", "$%", "$^", "$&", "$*", "$(",
+    "%)", "%!", "%@", "%#", "%$", "%%", "%^", "%&", "%*", "%(",
+    "^)", "^!", "^@", "^#", "^$", "^%", "^^", "^&", "^*", "^(",
+    "&)", "&!", "&@", "&#", "&$", "&%", "&^", "&&", "&*", "&(",
+    "*)", "*!", "*@", "*#", "*$", "*%", "*^", "*&", "**", "*(",
+    "()", "(!", "(@", "(#", "($", "(%", "(^", "(&", "(*", "((",
+    "!))"
+  ];
+
+  const SPECIAL_SIGILS = ["!!", "@@", "##", "$$", "%%", "^^", "&&", "**", "(("];
+
+  const grid = document.getElementById("grid");
+  const search = document.getElementById("sigilSearch");
+
+  // Load persistent highlight state
+  const saved = JSON.parse(localStorage.getItem("sigil-highlights") || "[]");
+
+  function saveState() {
+    localStorage.setItem("sigil-highlights", JSON.stringify(saved));
+  }
+
+  // Build grid
+  labels.forEach((sigil, i) => {
+    const index = i + 1;
+    const btn = document.createElement("button");
+    btn.className = "cell";
+    btn.type = "button";
+    btn.dataset.index = index;
+    btn.dataset.sigil = sigil;
+
+    // Tooltip
+    btn.title = `Sigil: ${sigil} | Index: ${index}`;
+
+    // Sigil text
+    const sigilEl = document.createElement("div");
+    sigilEl.className = "sigil";
+    sigilEl.textContent = sigil;
+
+    // Index text
+    const indexEl = document.createElement("div");
+    indexEl.className = "index";
+    indexEl.textContent = `#${index}`;
+
+    btn.appendChild(sigilEl);
+    btn.appendChild(indexEl);
+
+    // Auto-highlight special sigils OR persistent ones
+    if (SPECIAL_SIGILS.includes(sigil) || saved.includes(index)) {
+      btn.classList.add("highlight");
+    }
+
+    // Interaction
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("highlight");
+
+      // Update persistent state
+      if (btn.classList.contains("highlight")) {
+        if (!saved.includes(index)) saved.push(index);
+      } else {
+        const pos = saved.indexOf(index);
+        if (pos !== -1) saved.splice(pos, 1);
+      }
+      saveState();
+
+      // Copy to clipboard
+      navigator.clipboard?.writeText(sigil).catch(() => {});
+
+      // Emit custom event
+      grid.dispatchEvent(
+        new CustomEvent("sigil-select", {
+          detail: { sigil, index }
+        })
+      );
+    });
+
+    grid.appendChild(btn);
+  });
+
+  // Search functionality
+  search.addEventListener("input", () => {
+    const q = search.value.trim().toLowerCase();
+
+    [...grid.children].forEach(btn => {
+      const sigil = btn.dataset.sigil.toLowerCase();
+      const index = btn.dataset.index;
+
+      const match =
+        sigil.includes(q) ||
+        index === q ||
+        (q.startsWith("#") && index === q.slice(1));
+
+      btn.style.display = match ? "grid" : "none";
+    });
+  });
+
+  // Example listener for external integration
+  grid.addEventListener("sigil-select", e => {
+    console.log("Selected:", e.detail);
+  });
+
+  </script>
+
+</body>
+</html>

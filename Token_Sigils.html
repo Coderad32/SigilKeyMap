@@ -1,277 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Token Sigils — Key Mapper -- 100 grid</title>
-  <style>
-    :root {
-      --bg: #d0a60f;
-      --panel: #151a21;
-      --text: #e6edf3;
-      --muted: #9aa4ad;
-      --accent: #4cc2ff;
-      --button-bg: #e2e7ee;
-      --button-hover: #2dd10d;
-      --button-active: #0c448e;
-      --border: #c3c5c7;
-      --radius: 10px;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Token Sigils — Key Mapper Grid 100</title>
 
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      margin: 0;
-    }
+<style>
+  .site-footer {
+  margin-top: 40px;
+  padding: 24px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-align: center;
+}
 
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px;
-    }
+.site-footer h2 {
+  margin: 0 0 10px;
+  color: var(--accent);
+}
 
-    header {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 18px;
-    }
+.site-footer p {
+  margin: 8px 0;
+  color: var(--text);
+}
 
-    header h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      letter-spacing: 0.2px;
-    }
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0;
+}
 
-    header p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 10px;
-    }
-
-    .cell {
-      background: var(--button-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 10px;
-      display: grid;
-      align-items: center;
-      justify-items: center;
-      text-align: center;
-      cursor: pointer;
-      transition: background 160ms ease, border-color 160ms ease, transform 80ms ease;
-      user-select: none;
-    }
-
-    .cell:hover {
-      background: var(--button-hover);
-      border-color: #07dc1d;
-    }
-
-    .cell:active {
-      background: var(--button-active);
-      transform: translateY(1px);
-    }
-
-    .sigil {
-      font-size: 1.1rem;
-      letter-spacing: 0.5px;
-    }
-
-    .index {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    .footer {
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .accent {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    @media (max-width: 720px) {
-      .grid {
-        grid-template-columns: repeat(5, 1fr);
-      }
-    }
-
-    @media (max-width: 420px) {
-      .grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-.cell.highlight {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #0cb130;
+.footer-links a {
+  color: var(--accent);
+  text-decoration: none;
   font-weight: 600;
 }
 
+.footer-links a:hover {
+  text-decoration: underline;
+}
 
-  </style>
+.site-footer .copyright {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+:root {
+  --bg:#d0a60f;
+  --panel:#151a21;
+  --text:#e6edf3;
+  --muted:black;
+  --accent:#4cc2ff;
+  --button-bg:#e2e7ee;
+  --button-hover:#2dd10d;
+  --button-active:#0c448e;
+  --border:#c3c5c7;
+  --radius:10px;
+}
+
+html,body {
+  margin:0;
+  height:100%;
+  background:var(--bg);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
+.wrap {
+  max-width:1100px;
+  margin:auto;
+  padding:24px;
+}
+
+header p { color:var(--muted); }
+
+.panel {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+}
+
+.controls {
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.controls input {
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid var(--border);
+}
+
+.controls button {
+  padding:10px 14px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  cursor:pointer;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(10,1fr);
+  gap:10px;
+}
+
+@media(max-width:720px){
+  .grid{grid-template-columns:repeat(5,1fr)}
+}
+
+@media(max-width:420px){
+  .grid{grid-template-columns:repeat(4,1fr)}
+}
+
+.cell {
+  background:var(--button-bg);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:12px;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+
+.cell:hover { background:var(--button-hover); }
+
+.cell:active {
+  background:var(--button-active);
+  transform:translateY(1px);
+}
+
+.cell:focus-visible {
+  outline:3px solid var(--accent);
+  outline-offset:2px;
+}
+
+.sigil { font-size:1.05rem; }
+.index { font-size:.8rem; color:var(--muted); margin-top:6px; }
+
+/* ---- SPECIAL SIGILS ---- */
+.cell.special {
+  background:linear-gradient(135deg,#2a3442,#1c2430);
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px rgba(76,194,255,.35);
+}
+
+.cell.special .sigil {
+  color:var(--accent);
+  font-weight:700;
+}
+
+.cell.special .index {
+  color:#b6c6d6;
+}
+
+.cell.special:focus-visible {
+  outline:3px solid #ffffff;
+}
+
+/* ---- MODAL ---- */
+#modal-toggle { display:none; }
+
+.modal-overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+
+#modal-toggle:checked ~ .modal-overlay {
+  opacity:1;
+  pointer-events:auto;
+}
+
+.modal-box {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  width:360px;
+  transform:translateY(-20px);
+  transition:.25s;
+}
+
+#modal-toggle:checked ~ .modal-overlay .modal-box {
+  transform:translateY(0);
+}
+
+.close-btn {
+  float:right;
+  font-size:22px;
+  cursor:pointer;
+  color:var(--muted);
+}
+
+.modal-box input,
+.modal-box textarea,
+.modal-box button {
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid var(--border);
+}
+
+.modal-box button {
+  background:var(--accent);
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Token Sigils — Key Mapper</h1>
-      <p>100-button grid mapped to your sigil sequence for quick visual reference and interaction.</p>
-    </header>
+<div class="wrap">
+  <header>
+    <h1>Sigil Magic Tokens — Key Mapper Grid</h1>
+    
+    <h2>Welcome Users -- </h2>
+    <p>
+      Keyboard-navigable sigil grid with import/export.
 
-    <section class="panel">
-  <input
-  id="sigilSearch"
-  type="text"
-  placeholder="Search sigils or index…"
-  style="
-    width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 14px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: #fff;
-    font-size: 1rem;
-  "
-/>
+      Thanks for taking the time to view the project.
+      If you have any questions or need assistance, feel free to reach out.
+
+      if you would like to contribute to the project, you can do so by submitting pull requests or opening issues on the GitHub repository.
+    </p>
 
 
-      <div class="grid" id="grid"></div>
-      <div class="footer">
-        Source Code: <span class="accent">Cody Bunnell</span> —
-        <a href="https://github.com/Coderad32" target="_blank" rel="noopener noreferrer">github.com/Coderad32</a> ·
-        <a href="https://x.com/coderad32" target="_blank" rel="noopener noreferrer">x.com/coderad32</a>
-      </div>
-    </section>
+
+  </header>
+
+  <section class="panel">
+    <div class="controls">
+      <input id="sigilSearch" placeholder="Search sigils or index…" />
+      <button id="exportBtn">Export</button>
+      <button id="importBtn">Import</button>
+      <input id="importFile" type="file" accept=".json" hidden />
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </section>
+</div>
+
+<input type="checkbox" id="modal-toggle">
+
+<div class="modal-overlay">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <label for="modal-toggle" class="close-btn">&times;</label>
+    <h2>Sigil Details</h2>
+
+    <p><strong>Sigil:</strong> <span id="modalSigil"></span></p>
+    <p><strong>Index:</strong> <span id="modalIndex"></span></p>
+
+    <input id="customLabel" placeholder="Custom label…" />
+    <textarea id="customNotes" rows="3" placeholder="Notes…"></textarea>
+
+    <button id="saveSigil">Save</button>
   </div>
+</div>
 
+<footer class="site-footer">
+  <h2>Key Mapper Grid 100</h2>
+
+  <p>
+    Please feel free to connect with me on social media or
+    visit my GitHub profile for more information | updates && upgrades.
+  </p>
+
+  <nav class="footer-links">
+    <a href="https://x.com/coderad32" target="_blank" rel="noopener">
+      @Coderad32
+    </a>
+
+    <a href="https://github.com/coderad32" target="_blank" rel="noopener">
+      Top Code
+    </a>
+  </nav>
+
+  <p class="copyright">
+    Copyright © 2025/26 @Coderad32. All rights reserved. 🚀 🔒 🔑 👽
+  </p>
+</footer>
 
 <script>
-  const labels = [
-    "!", "@", "#", "$", "%", "^", "&", "*", "(",
-    "!)", "!!", "!@", "!#", "!$", "!%", "!^", "!&", "!*", "!(",
-    "@)", "@!", "@@", "@#", "@$", "@%", "@^", "@&", "@*", "@(",
-    "#)", "#!", "#@", "##", "#$", "#%", "#^", "#&", "#*", "#(",
-    "$)", "$!", "$@", "$#", "$$", "$%", "$^", "$&", "$*", "$(",
-    "%)", "%!", "%@", "%#", "%$", "%%", "%^", "%&", "%*", "%(",
-    "^)", "^!", "^@", "^#", "^$", "^%", "^^", "^&", "^*", "^(",
-    "&)", "&!", "&@", "&#", "&$", "&%", "&^", "&&", "&*", "&(",
-    "*)", "*!", "*@", "*#", "*$", "*%", "*^", "*&", "**", "*(",
-    "()", "(!", "(@", "(#", "($", "(%", "(^", "(&", "(*", "((",
-    "!))"
-  ];
+const labels = [
+  "!", "@", "#", "$", "%", "^", "&", "*", "(",
+  "!)","!!","!@","!#","!$","!%","!^","!&","!*","!(",
+  "@)","@!","@@","@#","@$","@%","@^","@&","@*","@(",
+  "#)","#!","#@","##","#$","#%","#^","#&","#*","#(",
+  "$)","$!","$@","$#","$$","$%","$^","$&","$*","$(",
+  "%)","%!","%@","%#","%$","%%","%^","%&","%*","%(",
+  "^)", "^!","^@","^#","^$","^%","^^","^&","^*","^(",
+  "&)","&!","&@","&#","&$","&%","&^","&&","&*","&(",
+  "*)","*!","*@","*#","*$","*%","*^","*&","**","*(",
+  "()","(!","(@","(#","($","(%","(^","(&","(*","((",
+  "!))"
+];
 
-  const SPECIAL_SIGILS = ["!!", "@@", "##", "$$", "%%", "^^", "&&", "**", "(("];
+const SPECIAL = new Set(["!!","@@","##","$$","%%","^^","&&","**","(("]);
 
-  const grid = document.getElementById("grid");
-  const search = document.getElementById("sigilSearch");
+const grid = document.getElementById("grid");
+const search = document.getElementById("sigilSearch");
 
-  // Load persistent highlight state
-  const saved = JSON.parse(localStorage.getItem("sigil-highlights") || "[]");
+const modalSigil = document.getElementById("modalSigil");
+const modalIndex = document.getElementById("modalIndex");
+const labelInput = document.getElementById("customLabel");
+const notesInput = document.getElementById("customNotes");
+const saveBtn = document.getElementById("saveSigil");
 
-  function saveState() {
-    localStorage.setItem("sigil-highlights", JSON.stringify(saved));
+const meta = JSON.parse(localStorage.getItem("sigil-meta") || "{}");
+
+let buttons = [];
+let activeIndex = null;
+
+/* ---- GRID BUILD ---- */
+labels.forEach((sigil,i)=>{
+  const index = i + 1;
+  const b = document.createElement("button");
+
+  b.className = "cell";
+  b.dataset.index = index;
+  b.dataset.sigil = sigil;
+  b.tabIndex = i === 0 ? 0 : -1;
+
+  if (SPECIAL.has(sigil)) {
+    b.classList.add("special");
+    b.title = "Special sigil (system-defined)";
   }
 
-  // Build grid
-  labels.forEach((sigil, i) => {
-    const index = i + 1;
-    const btn = document.createElement("button");
-    btn.className = "cell";
-    btn.type = "button";
-    btn.dataset.index = index;
-    btn.dataset.sigil = sigil;
+  b.innerHTML = `
+    <div class="sigil">${meta[index]?.label || sigil}</div>
+    <div class="index">#${index}</div>
+  `;
 
-    // Tooltip
-    btn.title = `Sigil: ${sigil} | Index: ${index}`;
+  b.onclick = () => {
+    activeIndex = index;
+    modalSigil.textContent = sigil;
+    modalIndex.textContent = index;
+    labelInput.value = meta[index]?.label || "";
+    notesInput.value = meta[index]?.notes || "";
+    document.getElementById("modal-toggle").checked = true;
+  };
 
-    // Sigil text
-    const sigilEl = document.createElement("div");
-    sigilEl.className = "sigil";
-    sigilEl.textContent = sigil;
+  grid.appendChild(b);
+  buttons.push(b);
+});
 
-    // Index text
-    const indexEl = document.createElement("div");
-    indexEl.className = "index";
-    indexEl.textContent = `#${index}`;
+/* ---- SAVE META ---- */
+saveBtn.onclick = () => {
+  if (!activeIndex) return;
 
-    btn.appendChild(sigilEl);
-    btn.appendChild(indexEl);
+  meta[activeIndex] = {
+    label: labelInput.value.trim(),
+    notes: notesInput.value.trim()
+  };
 
-    // Auto-highlight special sigils OR persistent ones
-    if (SPECIAL_SIGILS.includes(sigil) || saved.includes(index)) {
-      btn.classList.add("highlight");
+  localStorage.setItem("sigil-meta", JSON.stringify(meta));
+
+  const btn = buttons.find(b => Number(b.dataset.index) === activeIndex);
+  if (btn) {
+    btn.querySelector(".sigil").textContent =
+      meta[activeIndex].label || btn.dataset.sigil;
+  }
+
+  document.getElementById("modal-toggle").checked = false;
+};
+
+/* ---- KEYBOARD NAVIGATION ---- */
+grid.addEventListener("keydown", e => {
+  const visible = buttons.filter(b => b.style.display !== "none");
+  const cols = getComputedStyle(grid).gridTemplateColumns.split(" ").length;
+  const i = visible.indexOf(document.activeElement);
+  if (i < 0) return;
+
+  let next = i;
+  if (e.key === "ArrowRight") next++;
+  if (e.key === "ArrowLeft") next--;
+  if (e.key === "ArrowDown") next += cols;
+  if (e.key === "ArrowUp") next -= cols;
+
+  if (next >= 0 && next < visible.length) {
+    visible[i].tabIndex = -1;
+    visible[next].tabIndex = 0;
+    visible[next].focus();
+    e.preventDefault();
+  }
+});
+
+/* ---- SEARCH ---- */
+search.oninput = () => {
+  const q = search.value.toLowerCase();
+  buttons.forEach(b => {
+    const s = b.dataset.sigil.toLowerCase();
+    const i = b.dataset.index;
+    b.style.display = (s.includes(q) || i === q || "#" + i === q) ? "" : "none";
+  });
+};
+
+/* ---- EXPORT ---- */
+document.getElementById("exportBtn").onclick = () => {
+  const data = { meta };
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "sigil-map.json";
+  a.click();
+};
+
+/* ---- IMPORT ---- */
+document.getElementById("importBtn").onclick =
+  () => document.getElementById("importFile").click();
+
+document.getElementById("importFile").onchange = e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if (!data.meta) throw 0;
+      localStorage.setItem("sigil-meta", JSON.stringify(data.meta));
+      location.reload();
+    } catch {
+      alert("Invalid sigil map file");
     }
+  };
+  reader.readAsText(file);
+};
 
-    // Interaction
-    btn.addEventListener("click", () => {
-      btn.classList.toggle("highlight");
-
-      // Update persistent state
-      if (btn.classList.contains("highlight")) {
-        if (!saved.includes(index)) saved.push(index);
-      } else {
-        const pos = saved.indexOf(index);
-        if (pos !== -1) saved.splice(pos, 1);
-      }
-      saveState();
-
-      // Copy to clipboard
-      navigator.clipboard?.writeText(sigil).catch(() => {});
-
-      // Emit custom event
-      grid.dispatchEvent(
-        new CustomEvent("sigil-select", {
-          detail: { sigil, index }
-        })
-      );
-    });
-
-    grid.appendChild(btn);
-  });
-
-  // Search functionality
-  search.addEventListener("input", () => {
-    const q = search.value.trim().toLowerCase();
-
-    [...grid.children].forEach(btn => {
-      const sigil = btn.dataset.sigil.toLowerCase();
-      const index = btn.dataset.index;
-
-      const match =
-        sigil.includes(q) ||
-        index === q ||
-        (q.startsWith("#") && index === q.slice(1));
-
-      btn.style.display = match ? "grid" : "none";
-    });
-  });
-
-  // Example listener for external integration
-  grid.addEventListener("sigil-select", e => {
-    console.log("Selected:", e.detail);
-  });
-
-  </script>
-
+/* ---- ESC CLOSE MODAL ---- */
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    document.getElementById("modal-toggle").checked = false;
+  }
+});
+</script>
 </body>
 </html>

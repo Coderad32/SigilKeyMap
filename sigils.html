@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
         * {
             box-sizing: border-box;
         }
-body {
+        body {
             background-color: #1e1e1e;
             color: #d4d4d4;
             font-family: 'Courier New', Courier, monospace;
@@ -21,7 +22,6 @@ body {
             border-radius: 5px;
             overflow-x: auto;
             border: solid lightgreen 5px;
-
         }
         code {
             font-family: 'Courier New', Courier, monospace;
@@ -29,53 +29,181 @@ body {
             line-height: 1.5;
             color: greenyellow;
         }
-        *{
-            border solid red 5px;
+        /* Navigation Links Styling */
+        .toc a {
+            color: #58a6ff;
+            margin: 0 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Base Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #252526;
+            color: #d4d4d4;
+            padding: 30px;
+            border: 2px solid #58a6ff;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+            position: relative;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-btn:hover {
+            color: #fff;
         }
     </style>
     <title>Sigil Symbolic Document</title>
 </head>
-<body>
-   
+<body>       
     <div class="container">
-
-        <h1>welcome to sigil mapper</h1>
- <p>
-            This document showcases a variety of sigil combinations using special characters.
-            Each line represents a unique combination of symbols, demonstrating the versatility and creativity
+        <h1>welcome to sigil mapper</h1> 
+        <p>            
+            This document showcases a variety of sigil combinations using special characters.            
+            Each line represents a unique combination of symbols, demonstrating the versatility and creativity        
+        </p> 
+        <h3>Table of Contents</h3> 
+        <p class="toc">    
+            <a onclick="openModal('modal-created-by')">Created by</a>    
+            <a onclick="openModal('modal-contact')">Contact</a>    
+            <a onclick="openModal('modal-license')">License</a>    
+            <a onclick="openModal('modal-disclaimer')">Disclaimer</a>    
+            <a onclick="openModal('modal-version')">Version</a>    
+            <a onclick="openModal('modal-author')">Author</a>    
+            <a onclick="openModal('modal-source')">Source</a>    
+            <a onclick="openModal('modal-contributors')">Contributors</a>    
+            <a onclick="openModal('modal-last-updated')">Last Updated</a>    
+            <a onclick="openModal('modal-repository')">Repository</a> 
         </p>
- <h3>Table of Contents</h3>
- <p>
-    <a href="#created-by">Created by</a>
-    <a href="#contact">Contact</a>
-    <a href="#license">License</a>
-    <a href="#disclaimer">Disclaimer</a>
-    <a href="#version">Version</a>
-    <a href="#author">Author</a>
-    <a href="#source">Source</a>
-    <a href="#contributors">Contributors</a>
-    <a href="#last-updated">Last Updated</a>
-    <a href="#repository">Repository</a>
- </p>
     </div>
-    <pre>
-        <marquee behavior="scroll" direction="left">Welcome to Sigil Mapper</marquee>
-        <code>
-    ' !  @  #  $  %  ^  &  *  ( !)',
-    '!! !@ !# !$ !% !^ !& !* !( @)',
-    '@! @@ @# @$ @% @^ @& @* @( #)',
-    '#! #@ ## #$ #% #^ #& #* #( $)',
-    '$! $@ $# $$ $% $^ $& $* $( %)',
-    '%! %@ %# %$ %% %^ %& %* %( ^)',
-    '^! ^@ ^# ^$ ^% ^^ ^& ^* ^( &)',
-    '&! &@ &# &$ &% &^ && &* &( *)',
-    '*! *@ *# *$ *% *^ *& ** *( ()',
-    '(! (@ (# ($ (% (^ (& (* (( !))'.
-        </code>
+
+    <pre>        
+        <marquee behavior="scroll" direction="left">Welcome to Sigil Mapper</marquee>        
+        <code>    
+    ' !  @  #  $  %  ^  &  *  ( !)',    
+    '!! !@ !# !$ !% !^ !& !* !( @)',    
+    '@! @@ @# @$ @% @^ @& @* @( #)',    
+    '#! #@ ## #$ #% #^ #& #* #( $)',    
+    '$! $@ $# $$ $% $^ $& $* $( %)',    
+    '%! %@ %# %$ %% %^ %& %* %( ^)',    
+    '^! ^@ ^# ^$ ^% ^^ ^& ^* ^( &)',    
+    '&! &@ &# &$ &% &^ && &* &( *)',    
+    '*! *@ *# *$ *% *^ *& ** *( ()',    
+    '(! (@ (# ($ (% (^ (& (* (( !))'.        
+        </code>    
     </pre>
 
+    <!-- MODALS FOR EACH TOPIC -->
+    <div id="modal-created-by" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-created-by')">&times;</span>
+            <h2>Created By</h2>
+            <p>This project was originally designed and conceptualized by <strong>Cody Bunnell</strong>.</p>
+        </div>
+    </div>
 
-    <footer>
+    <div id="modal-contact" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-contact')">&times;</span>
+            <h2>Contact Information</h2>
+            <p>Reach out to the creator via email at:</p>
+            <p><code>opencode411@gmail.com</code></p>
+        </div>
+    </div>
+
+    <div id="modal-license" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-license')">&times;</span>
+            <h2>License</h2>
+            <p>This project is open-source and distributed under the <strong>MIT License</strong>.</p>
+        </div>
+    </div>
+
+    <div id="modal-disclaimer" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-disclaimer')">&times;</span>
+            <h2>Disclaimer</h2>
+            <p>This document and its contents are strictly for <strong>educational purposes only</strong>.</p>
+        </div>
+    </div>
+
+    <div id="modal-version" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-version')">&times;</span>
+            <h2>Version</h2>
+            <p>Current Release: <strong>v1.0</strong></p>
+        </div>
+    </div>
+
+    <div id="modal-author" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-author')">&times;</span>
+            <h2>Author</h2>
+            <p>Author Details: <strong>[Cody Bunnell]</strong></p>
+        </div>
+    </div>
+
+    <div id="modal-source" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-source')">&times;</span>
+            <h2>Source</h2>
+            <p>Find original updates and posts via X (formerly Twitter):</p>
+            <p><a href="https://x.com/coderad32" target="_blank" style="color: #58a6ff;">x.com/coderad32</a></p>
+        </div>
+    </div>
+
+    <div id="modal-contributors" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-contributors')">&times;</span>
+            <h2>Contributors</h2>
+            <p>Special thanks to the primary contributor:</p>
+            <p><strong>[Cody Bunnell]</strong></p>
+        </div>
+    </div>
+
+    <div id="modal-last-updated" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-last-updated')">&times;</span>
+            <h2>Last Updated</h2>
+            <p>Timestamp: <strong>Fri Aug 22 20:59:32 PDT 2025</strong></p>
+        </div>
+    </div>
+
+    <div id="modal-repository" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-repository')">&times;</span>
+            <h2>Repository</h2>
+            <p>Access the code repository online:</p>
+            <p><a href="https://github.com/coderad32" target="_blank" style="color: #58a6ff;">github.com/coderad32</a></p>
+        </div>
+    </div>
+
+    <footer>        
         <p>Created by [Cody Bunnell]</p>
         <p>Contact: [opencode411@gmail.com]</p>
         <p>License: MIT</p>
@@ -86,9 +214,25 @@ body {
         <p>Contributors: [Cody Bunnell]</p>
         <p>Last Updated: [Fri Aug 22 20:59:32 PDT 2025]</p>
         <p>Repository: [github.com/coderad32]</p>
-
         <p>All rights reserved. 2025</p>
-
     </footer>
+
+    <!-- JavaScript to Handle Modals -->
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Close modal if user clicks outside of the modal content box
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

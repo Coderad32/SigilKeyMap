@@ -12,7 +12,8 @@ Written By: Cody Bunnell Lead Developer For Coderad32 Profile. 2026
 ```
 
 # Welcome
-## Details About Cube Block version 1.0
+## Details About Cube Block version 1.1
+
 This is a cube block a digital key of logic
 used in robotics for robots to learn from.
 
@@ -21,7 +22,7 @@ This is the digital block of numbers to 100.
 
 ```perl
 
-1 2 3 4 5 6 7 8 9 10
+         1 2 3 4 5 6 7 8 9 10
 11 12 13 14 15 16 17 18 19 20
 21 22 23 24 25 26 27 28 29 30 
 31 32 33 34 35 36 37 38 39 40
@@ -34,21 +35,20 @@ This is the digital block of numbers to 100.
 
 ```
 
-## Sigil Token Magic
+## Sigil Token Magic Define
 
-This is the tokens from the digit map
-turned over inorder 1 - 100.
+This is the tokens from the digits mapper
+turned over in order 0 1 2 3 4 5 6 7 8 9 fix 
+any errors with parameter completion and correct
+parameters so its like this stricty SHIFT numbers
 
 Simply read the numbers incoords in relation
 to the tokens to find the root number.
 
+## Source Block
 
 ```perl
-
-print " Cube Block of 100 digits."
-print {
-
-"! @ # $ % ^ & * ( !)
+"        ! @ # $ % ^ & * ( !)
 !! !@ !# !$ !% !^ !& !* !( @)
 @! @@ @# @$ @% @^ @& @* @( #) 
 #! #@ ## #$ #% #^ #& #* #( $)
@@ -59,21 +59,25 @@ $! $@ $# $$ $% $^ $& $* $( %)
 *! *@ *# *$ *% *^ *& ** *( () 
 (! (@ (# ($ (% (^ (& (* (( !))"
 
-}
-
-print "perlish code block"
-
 ```
 
 ## conclusion
 
-Sigils are like magic needs more definitions.
-token sigils can form new meanings and logic
-commands (( eq | command 1| command 2| command 3| result.txt ))
+Sigils are like magic or symbolic in nature key pairs of SHIFT digits
+arranged into a grid of 10x10=100 sum sigils. These sigils need some work
+but you'll get it sooner rather than later. Entropy. Building Entropy.
 
-## Connect / Contact
+Define Sigil Tokens SHIFT numbers into Tokens (sigils) you could make 
+a game out of it if you printed these twice and played a matching game
+the grid would be 20x20=200 sum sigils.
 
-github.com/coderad32 -> Cody Bunnell Lead Developer @Coderad32
+## Connect / Contact / Networking
+
+- Connect for more information.
+- Contact if you have a question that is more personal.
+- Network if you care about the project life cycle.
+
+@/: github.com/coderad32 -> Lead Developer @Coderad32
 
 ```
 

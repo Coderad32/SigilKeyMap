@@ -8,7 +8,7 @@ connecting the dots later down the road.
 
 
 ```
-Written By: Cody Bunnell Lead Developer For Coderad32 Profile. 2026
+Written By: Coderad32 2026 Creative Commons CC - CA - CS - CB
 ```
 
 # Welcome
@@ -69,7 +69,7 @@ but you'll get it sooner rather than later. Entropy. Building Entropy.
 
 Define Sigil Tokens SHIFT numbers into Tokens (sigils) you could make 
 a game out of it if you printed these twice and played a matching game
-the grid would be 20x20=200 sum sigils.
+the grid would be add another 10x10 grid of sum sigils.
 
 ## Connect / Contact / Networking
 
@@ -79,8 +79,5 @@ the grid would be 20x20=200 sum sigils.
 
 @/: github.com/coderad32 -> Lead Developer @Coderad32
 
-```
 
-LICENSE: MIT 2026
-
-```
+- LICENSE: MIT 2026 Beyond The Viewport 2027

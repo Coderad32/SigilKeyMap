@@ -6,7 +6,7 @@ trap 'printf "\033[?25h\033[0m\033[2J"; exit 0' INT TERM
 # Clear screen and hide cursor
 printf "\033[2J\033[?25l"
 
-# Get terminal dimensions
+# Get terminal dimensions dynamically for full screen
 cols=$(tput cols)
 rows=$(tput lines)
 cols=${cols:-80}
@@ -14,21 +14,21 @@ rows=${rows:-24}
 
 # 100 Unique Sigil Combinations
 chars=(
-    '!' '@' '#' '$' '%' '^' '&' '*' '(' '!'
-    '!!' '!@' '!#' '!$' '!%' '!^' '!&' '!*' '!('
-    '@)' '@!' '@@' '@#' '@$' '@%' '@^' '@&' '@*' '@('
-    '#)' '#!' '#@' '##' '#$' '#%' '#^' '#&' '#*' '#('
-    '$)' '$!' '$@' '$#' '$$' '$%' '$^' '$&' '$*' '$('
-    '%)' '%!' '%@' '%#' '%$' '%%' '%^' '%&' '%*' '%('
-    '%)' '^!' '^@' '^#' '^$' '^%' '^^' '^&' '^*' '^('
-    '&)' '&!' '&@' '&#' '&$' '&%' '&^' '&&' '&*' '&('
-    '*)' '*!' '*@' '*#' '*$' '*%' '*^' '*&' '**' '*('
-    '()' '(!' '(@' '(#' '($' '(%' '(^' '(&' '(*' '(('
-    '!))'
+    '!' '@' '#' '$' '%' '^' '&' '*' '(' # 9
+    '!!' '!@' '!#' '!$' '!%' '!^' '!&' '!*' '!(' # 19
+    '@)' '@!' '@@' '@#' '@$' '@%' '@^' '@&' '@*' '@(' # 29
+    '#)' '#!' '#@' '##' '#$' '#%' '#^' '#&' '#*' '#(' # 39
+    '$)' '$!' '$@' '$#' '$$' '$%' '$^' '$&' '$*' '$(' # 49
+    '%)' '%!' '%@' '%#' '%$' '%%' '%^' '%&' '%*' '%(' # 59
+    '%)' '^!' '^@' '^#' '^$' '^%' '^^' '^&' '^*' '^(' # 69
+    '&)' '&!' '&@' '&#' '&$' '&%' '&^' '&&' '&*' '&(' # 79
+    '*)' '*!' '*@' '*#' '*$' '*%' '*^' '*&' '**' '*(' # 89  
+    '()' '(!' '(@' '(#' '($' '(%' '(^' '(&' '(*' '((' # 99
+    '!))' # 100
 )
 num_chars=${#chars[@]}
 
-# Initialize drop positions and speeds for each column
+# Initialize drop positions and speeds for each column across the full width
 for ((i=0; i<cols; i++)); do
     y_pos[i]=$((RANDOM % rows))
     speed[i]=$((RANDOM % 3 + 1))
@@ -36,6 +36,10 @@ done
 
 # Main loop
 while true; do
+    # Re-check dimensions in case the window was resized
+    cols=$(tput cols)
+    rows=$(tput lines)
+
     for ((x=0; x<cols; x++)); do
         col=$((x + 1))
         

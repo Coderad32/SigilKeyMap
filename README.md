@@ -5,7 +5,7 @@ connecting the dots later down the road.
 
 ## View the HTML
 - click on the html link and hit download raw file to view the HTML file.
-- Open SIGIL_MATRIX.sh in the terminal or VSCODE
+- Open SIGIL_CATERPILLAR.sh in the terminal or VSCODE
 - chmod +x SIGIL_CATERPILLAR.sh/
 - then ./SIGIL_CATERPILLAR.sh/ to view the source code CATERPILLAR SIGILS
 

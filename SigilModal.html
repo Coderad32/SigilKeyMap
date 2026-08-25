@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigil Modal Container</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Trigger Button */
+        #openModalBtn {
+            background: #00ff66;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #openModalBtn:hover {
+            background: #00cc52;
+        }
+
+        /* Modal Overlay Background */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* The Matrix Box Container Modal */
+        .matrix-modal {
+            background: #000;
+            border: 2px solid #00ff66;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        /* Matrix Screen Screen Grid */
+        #matrix-screen {
+            width: 40ch;
+            /* Matches 40 columns width */
+            height: 18em;
+            /* Matches 18 rows height */
+            line-height: 1em;
+            white-space: pre;
+            text-align: left;
+            overflow: hidden;
+            background-color: #000;
+            font-family: monospace;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Close Modal Button */
+        #closeModalBtn {
+            background: transparent;
+            color: #00ff66;
+            border: 1px solid #00ff66;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-family: monospace;
+        }
+
+        #closeModalBtn:hover {
+            background: #00ff66;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="openModalBtn">Open Sigil Modal</button>
+
+    <!-- Modal Structure -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="matrix-modal">
+            <div id="matrix-screen"></div>
+            <button id="closeModalBtn">Close [ESC ENTROPY]</button>
+        </div>
+    </div>
+
+    <script>
+        const chars = [
+            '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
+            '!!', '!@', '!#', '!$', '!%', '!^', '!&', '!*', '!(', '!)',
+            '@!', '@@', '@#', '@$', '@%', '@^', '@&', '@*', '@(', '@)',
+            '#!', '#@', '##', '#$', '#%', '#^', '#&', '#*', '#(', '#)',
+            '$!', '$@', '$#', '$$', '$%', '$^', '$&', '$*', '$(', '$)',
+            '%!', '%@', '%#', '%$', '%%', '%^', '%&', '%*', '%(', '%)',
+            '^!', '^@', '^#', '^$', '^%', '^^', '^&', '^*', '^(', '^)',
+            '&!', '&@', '&#', '&$', '&%', '&^', '&&', '&*', '&(', '&)',
+            '*!', '*@', '*#', '*$', '*%', '*^', '*&', '**', '*(', '*)',
+            '(!', '(@', '(#', '($', '(%', '(^', '(&', '((', '()', '!))'
+        ];
+
+        const BOX_WIDTH = 40;
+        const BOX_HEIGHT = 18;
+        let animationInterval = null;
+
+        const screenDiv = document.getElementById('matrix-screen');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const openBtn = document.getElementById('openModalBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+
+        let y_pos = new Array(BOX_WIDTH);
+        let lengths = new Array(BOX_WIDTH);
+        let grid = [];
+
+        function initMatrix() {
+            grid = Array.from({ length: BOX_HEIGHT }, () => Array(BOX_WIDTH).fill(' '));
+            for (let i = 0; i < BOX_WIDTH; i++) {
+                y_pos[i] = Math.floor(Math.random() * BOX_HEIGHT) - BOX_HEIGHT;
+                lengths[i] = Math.floor(Math.random() * 4) + 3;
+            }
+        }
+
+        function updateMatrix() {
+            // Clear grid matrix frame
+            let frameGrid = Array.from({ length: BOX_HEIGHT }, () => Array(BOX_WIDTH).fill(' '));
+
+            for (let x = 0; x < BOX_WIDTH; x++) {
+                let head = y_pos[x];
+                let len = lengths[x];
+
+                for (let j = 0; j < len; j++) {
+                    let curr_y = head - j;
+                    if (curr_y >= 0 && curr_y < BOX_HEIGHT) {
+                        let randomChar = chars[Math.floor(Math.random() * chars.length)];
+                        // Take the first character of the sigil pair to maintain structural grid width cleanly
+                        frameGrid[curr_y][x] = randomChar[0];
+                    }
+                }
+
+                y_pos[x] += 1; // speed = 1
+
+                if (y_pos[x] - len > BOX_HEIGHT) {
+                    y_pos[x] = -Math.floor(Math.random() * 3);
+                    lengths[x] = Math.floor(Math.random() * 4) + 3;
+                }
+            }
+
+            // Render text string output into HTML container element
+            screenDiv.innerHTML = frameGrid.map(row => row.join('')).join('\n');
+        }
+
+        function openModal() {
+            modalOverlay.style.display = 'flex';
+            initMatrix();
+            if (!animationInterval) {
+                animationInterval = setInterval(updateMatrix, 100); // ~10 FPS slow pacing
+            }
+        }
+
+        function closeModal() {
+            modalOverlay.style.display = 'none';
+            clearInterval(animationInterval);
+            animationInterval = null;
+        }
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+
+</html>

@@ -7,10 +7,10 @@ import os
 if os.name == 'nt':
     os.system('color')
 
-chars = "1234567890:qwertyuiop:0987654321"
+chars = "1234567890qwertyuiop0987654321"
 
 # Adjust the width of the matrix effect (number of columns)
-width = 32
+width = 72
 
 try:
     print("\033[1;32m") # Set terminal text to bright green
